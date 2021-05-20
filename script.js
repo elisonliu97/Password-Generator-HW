@@ -15,7 +15,12 @@ generateBtn.addEventListener("click", writePassword);
 
 // function to generate the password
 function generatePassword(){
-  var pwLen = Number(window.prompt("How long do you want the password to be? (8-128)", ""));
+  var pwLen = Number(window.prompt("How long do you want the password to be? (8-128)", "8"));
+  // if given an invalid input, will stop 
+  if (!(pwLen>=8 && pwLen<=128)){
+    window.alert("This is an invalid choice.");
+    return;
+  }
   var lowCond = (window.confirm("Do you want lower case letters in your password? (a-z)"));
   var upCond = (window.confirm("Do you want upper case letters in your password? (A-Z)"));
   var numCond = (window.confirm("Do you want numbers in your password? (0-9)"));
@@ -27,6 +32,9 @@ function generatePassword(){
   var numChar = "0123456789";
   var specChar = "!@#$%^&*_-+=";
   var passChar = "";
+
+  // generated password holder
+  var randPass = "";
 
   // creates a list of possible characters according to user's specifications 
   if (lowCond){
@@ -46,9 +54,16 @@ function generatePassword(){
     console.log(passChar);
   }
 
+  // password generation
+  for (var i = 0; i < pwLen; i++){
+    randPass += passChar.charAt(Math.floor(Math.random()*passChar.length));
+  }
+
+  return randPass;
 
 }
 
+// REQUIREMENTS:
 // when button is clicked, prompts come up
 // prompt 1: length between 8-128
 // prompt 2: char requirements
