@@ -20,6 +20,33 @@ function generatePassword(){
   var upCond = (window.confirm("Do you want upper case letters in your password? (A-Z)"));
   var numCond = (window.confirm("Do you want numbers in your password? (0-9)"));
   var specCond = (window.confirm("Do you want special characters in your password? (!,@,#,$,%,...)"));
+
+  // list of characters allowed
+  var lowChar = "abcdefghijklmnopqrstuvwxyz";
+  var upChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var numChar = "0123456789";
+  var specChar = "!@#$%^&*_-+=";
+  var passChar = "";
+
+  // creates a list of possible characters according to user's specifications 
+  if (lowCond){
+    passChar += lowChar;
+    console.log(passChar);
+  }
+  if (upCond){
+    passChar += upChar;
+    console.log(passChar);
+  }
+  if (numCond){
+    passChar += numChar;
+    console.log(passChar);
+  }
+  if (specCond){
+    passChar += specChar;
+    console.log(passChar);
+  }
+
+
 }
 
 // when button is clicked, prompts come up
