@@ -30,8 +30,9 @@ function generatePassword(){
   var lowChar = "abcdefghijklmnopqrstuvwxyz";
   var upChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var numChar = "0123456789";
-  var specChar = "!@#$%^&*_-+=";
+  var specChar = " !#$%&'()*+,-./:;<=>?@[]^_`{|}~";
   var passChar = "";
+  var constChar = [];
 
   // generated password holder
   var randPass = "";
@@ -39,19 +40,19 @@ function generatePassword(){
   // creates a list of possible characters according to user's specifications 
   if (lowCond){
     passChar += lowChar;
-    console.log(passChar);
+    constChar.push(lowChar.charAt(Math.floor(Math.random()*lowChar.length)));
   }
   if (upCond){
     passChar += upChar;
-    console.log(passChar);
+    constChar.push(upChar.charAt(Math.floor(Math.random()*upChar.length)));
   }
   if (numCond){
     passChar += numChar;
-    console.log(passChar);
+    constChar.push(numChar.charAt(Math.floor(Math.random()*numChar.length)));
   }
   if (specCond){
     passChar += specChar;
-    console.log(passChar);
+    constChar.push(specChar.charAt(Math.floor(Math.random()*specChar.length)));
   }
 
   // password generation
@@ -59,14 +60,16 @@ function generatePassword(){
     randPass += passChar.charAt(Math.floor(Math.random()*passChar.length));
   }
 
+  // To ensure that the generated password fulfills the conditions
+  var randArray = randPass.split('');
+
+  // replace the first few chars with chars that fulfill the conditions
+  for (var x = 0; x <constChar.length; x++){
+    randArray[x] = constChar[x];
+  }
+
+  randPass = randArray.join('');
+  
   return randPass;
 
 }
-
-// REQUIREMENTS:
-// when button is clicked, prompts come up
-// prompt 1: length between 8-128
-// prompt 2: char requirements
-// generate password
-// alert that password is generated
-// show on screen password
